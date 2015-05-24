@@ -17,7 +17,7 @@
 module.exports.passport = {
   local: {
     strategy: require('passport-local').Strategy
-  },
+  }/*,
 
   bearer: {
     strategy: require('passport-http-bearer').Strategy
@@ -50,7 +50,7 @@ module.exports.passport = {
     options: {
       clientID: 'your-client-id',
       clientSecret: 'your-client-secret',
-      scope: ['email'] /* email is necessary for login behavior */
+      scope: ['email']
     }
   },
 
@@ -73,5 +73,5 @@ module.exports.passport = {
       serverBaseURL: 'http://localhost:1337',
       serviceURL: 'http://localhost:1337/auth/cas/callback'
     }
-  }
+  } */
 };

@@ -22,7 +22,11 @@
     "rc": "~0.5.0",
     "sails": "~0.11.0",
     "sails-disk": "~0.10.0",
-    "sails-generate-auth": "^0.3.1"
+    "sails-generate-auth": "^0.3.1",
+    "passport-local": "^1.0.0",
+    "passport": "^0.2.2",
+    "validator": "^3.40.0",
+    "bcryptjs": "^2.1.0"
   },
   "scripts": {
     "debug": "node debug app.js",
