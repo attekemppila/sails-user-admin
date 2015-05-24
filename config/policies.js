@@ -19,7 +19,13 @@
 
 module.exports.policies = {
 
-  '*': [ 'passport' ]
+  '*': [ 'passport' ],
+
+  'AuthController':{
+    'manage':['passport','sessionAuth','superuser'],
+    'remove':['passport','sessionAuth','superuser'],
+    'setState':['passport','sessionAuth','superuser']
+  }
 
   /***************************************************************************
   *                                                                          *

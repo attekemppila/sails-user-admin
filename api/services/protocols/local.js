@@ -46,6 +46,9 @@ exports.register = function (req, res, next) {
   User.create({
     username : username
   , email    : email
+  , realname : req.param('realname')
+  , state    : 'pending'
+  , superuser: false
   }, function (err, user) {
     if (err) {
       if (err.code === 'E_VALIDATION') {
@@ -75,6 +78,12 @@ exports.register = function (req, res, next) {
 
         return user.destroy(function (destroyErr) {
           next(destroyErr || err);
+        });
+      }
+
+      if(user.id == 1) {
+        User.update({id: 1},{superuser: true}).exec(function(err, res) {
+          if(err) console.error(err);
         });
       }
 

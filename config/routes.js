@@ -25,6 +25,10 @@ module.exports.routes = {
   'get /login': 'AuthController.login',
   'get /logout': 'AuthController.logout',
   'get /register': 'AuthController.register',
+  'get /manage': 'AuthController.manage',
+
+  'get /auth/remove': 'AuthController.remove',
+  'get /auth/setState': 'AuthController.setState',
 
   'post /auth/local': 'AuthController.callback',
   'post /auth/local/:action': 'AuthController.callback',

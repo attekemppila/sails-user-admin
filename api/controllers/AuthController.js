@@ -97,6 +97,35 @@ var AuthController = {
     });
   },
 
+  /** @param {Object} req
+    * @param {Object} res */
+  manage: function(req, res) {
+    var state, filter;
+
+    if(req.query) state = req.query.state;
+
+    switch(state) {
+      case 'approved':
+        filter = {state: 'approved'};
+        break;
+      case 'denied':
+        filter = {state: 'denied'};
+        break;
+      default:
+        state='new';
+        filter={state:'pending'};
+    }
+
+    User.find().where(filter).exec(function(err,users) {
+      res.view({
+        users: users,
+        state: state,
+        errors: req.flash('error'),
+        _layoutFile:'layout-manage.ejs'
+      });
+    });
+  },
+
   /**
    * Create a third-party authentication endpoint
    *
@@ -105,6 +134,45 @@ var AuthController = {
    */
   provider: function (req, res) {
     passport.endpoint(req, res);
+  },
+
+  setState: function(req, res) {
+    var id = +req.query.id;
+    var state = req.query.state;
+
+    if(state != 'approved' && state != 'pending') state = 'denied';
+
+    User.update({id: id},{state: state}).exec(function(err, result) {
+      if(!err && result.length > 0) res.json(result[0].state);
+      else {
+        res.status(500);
+        res.json(500);
+      }
+    });
+  },
+
+  remove: function(req, res) {
+    var id = +req.query.id;
+
+    User.findOne({id: id}).exec(function(err, result) {
+      if(!err && result) {
+        console.log('REMOVE:');
+        console.log(result);
+        User.destroy(id).then(function(result) {
+          res.send('OK');
+        }).catch(function(err) {
+          console.log(err);
+          res.status(500);
+          res.json(500);
+        });
+      } else {
+        console.log(err);
+        console.log(result);
+
+        res.status(500);
+        res.json(500);
+      }
+    });
   },
 
   /**
