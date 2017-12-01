@@ -5,7 +5,7 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
-    "ejs": "~0.8.4",
+    "ejs": "~2.5.7",
     "grunt": "0.4.2",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-coffee": "~0.10.1",
@@ -24,9 +24,9 @@
     "sails-disk": "~0.10.0",
     "sails-generate-auth": "^0.3.1",
     "passport-local": "^1.0.0",
-    "passport": "^0.2.2",
-    "validator": "^3.40.0",
-    "bcryptjs": "^2.1.0"
+    "passport": "^0.4.0",
+    "validator": "^9.1.2",
+    "bcryptjs": "^2.4.3"
   },
   "scripts": {
     "debug": "node debug app.js",
